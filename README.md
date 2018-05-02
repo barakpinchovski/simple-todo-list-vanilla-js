@@ -3,8 +3,7 @@ A todo list app in vanilla JS: A simple implementation in pure, plain Javascript
 
 I created it originally as an example for JS - DOM manipulation for my students at BGU, and I may improve it later on.
 
-Author: Barak Pinchovski  
-Email: barakpinch@gmail.com
+Author: Barak Pinchovski
 
 ## Demo
 You can visit the [WIKI](https://github.com/barakpinchovski/simple-todo-list-vanilla-js/wiki) if you'd like to see images of the app.
