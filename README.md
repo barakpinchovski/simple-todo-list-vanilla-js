@@ -11,4 +11,4 @@ I initially didn't intend to perform or prevent any XSS or any JS injections in 
 Be aware of that if you plan to use this code on staging/production (not recommended without implementing counter-XSS measures).
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
