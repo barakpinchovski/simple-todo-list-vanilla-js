@@ -1,0 +1,92 @@
+body {
+    font-family: Tahoma;
+    min-width: 485px;
+    min-height: 500px;
+}
+
+#container {
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    margin: 150px auto 0;
+}
+
+.clearfix:after {
+    content: '';
+    clear: both;
+    display: table;
+}
+
+h1 {
+    font-family: Verdana, Geneva, "Trebuchet MS", Helvetica, sans-serif;
+}
+
+input {
+    width: 70%;
+    height: 50px;
+    padding: 0 15px;
+    font-size: 20px;
+    color: #0b558a;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    outline: 0;
+}
+
+.new-item {
+    position: relative;
+}
+
+.tooltip.hide {
+    height: 0;
+    padding: 0;
+    visibility: hidden;
+}
+
+.tooltip {
+    width: 70%;
+    height: auto;
+    background: #203966;
+    color: white;
+    border-radius: 0 0 25px 25px;
+    padding: 8px;
+    margin: 0 auto;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+}
+
+article {
+    width: 72.5%;
+    margin: 0 auto;
+}
+
+section {
+    margin: 15px 0;
+}
+
+section input[type='checkbox'],
+section label {
+    float: left;
+    width: 5%;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
+}
+
+section label {
+    width: 95%;
+    text-align: left;
+    color: #0b558a;
+}
+
+.done {
+    opacity: 0.5;
+}
+
+.done label {
+    text-decoration: line-through;
+    color: dimgray;
+}
+
+footer {
+    margin-top: 20px;
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Simple Todo List - Vanilla JS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Barak Pinchovski">
+        <meta name="description" content="Simple todo list written in plain vanilla JS">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div id="container">
+            <header>
+                <h1>Todo App</h1>
+            </header>
+            <main>
+                <form name="todoForm" onsubmit="return addItem()">
+                    <div class="new-item">
+                        <input maxlength="57" placeholder="Enter item to add to the list" onkeyup="toggleTooltip(this.value)"/>
+                        <div onclick="addItem()" class="tooltip hide">Press Enter or click here to add the item</div>
+                    </div>
+                    <article class="clearfix todos-list">
+                    </article>
+                </form>
+            </main>
+            <footer>
+                <div>Completed: <span class="completed-count">no</span> items</div>
+            </footer>
+        </div>
+    </body>
+    <script src="js/main.js"></script>
+</html>
