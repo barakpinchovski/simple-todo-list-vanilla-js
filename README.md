@@ -6,6 +6,8 @@ I created it originally as an example for JS - DOM manipulation for my students 
 Author: Barak Pinchovski
 
 ## Demo
+[Live Demo](https://barakpinchovski.github.io/simple-todo-list-vanilla-js/)
+
 You can visit the [WIKI](https://github.com/barakpinchovski/simple-todo-list-vanilla-js/wiki) if you'd like to see images of the app.
 
 ## Notice
