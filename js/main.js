@@ -1,8 +1,10 @@
-// Initialize common used variables
+// Initialize commonly used variables
 const newTodoInput = document.todoForm[0];
 const completedCount = document.getElementsByClassName('completed-count')[0];
 const tooltip = document.getElementsByClassName('tooltip')[0];
-var todosList = document.getElementsByClassName('todos-list')[0];
+const todosList = document.getElementsByClassName('todos-list')[0];
+const legend = document.getElementById('legend');
+const removeAllCompletedButton = document.getElementsByClassName('shrink')[0];
 var id = 0;
 
 /**
@@ -30,6 +32,7 @@ function addItem() {
 
         clearInput();
         updateCompleted();
+        newTodoInput.focus();
     }
     return false; // Return false so the form won't be submitted automatically
 }
@@ -40,8 +43,7 @@ function addItem() {
  * @returns {Element}
  */
 function createNewItem(value) {
-    var newTodo = document.createElement('section');
-    newTodo.classList.add('clearfix');
+    var newTodo = document.createElement('li');
 
     var checkbox = document.createElement('input');
     checkbox.id = id;
@@ -50,12 +52,30 @@ function createNewItem(value) {
         newTodo.classList.toggle('done');
         updateCompleted();
     };
-    newTodo.appendChild(checkbox);
+
+    var checkboxWrapper = document.createElement('div');
+    checkboxWrapper.appendChild(checkbox);
 
     var label = document.createElement('label');
     label.setAttribute('for', id.toString());
     label.appendChild( document.createTextNode(value) );
+
+    var removeItem = document.createElement('img');
+    removeItem.classList.add('remove-item');
+    removeItem.setAttribute('src', 'img/remove-item.svg');
+    removeItem.setAttribute('alt', 'Remove item');
+    removeItem.onmouseenter = function() { toggleLegend('Remove this single item'); };
+    removeItem.onmouseleave = function() { toggleLegend(); };
+    removeItem.onclick = function() {
+        if (checkbox.checked || !checkbox.checked && confirmRemoval('Remove incomplete item?')) {
+            newTodo.remove();
+            updateCompleted();
+        }
+    };
+
+    newTodo.appendChild(checkboxWrapper);
     newTodo.appendChild(label);
+    newTodo.appendChild(removeItem);
 
     id++; // Increment id for next item
     return newTodo;
@@ -73,11 +93,71 @@ function updateCompleted() {
                 count++;
             }
         }
+        count = count + ' of ' + checkboxes.length;
     }
     else {
         count = 'no';
     }
     completedCount.innerHTML = count;
+    toggleRemoveAllCompleted(count);
+}
+
+/**
+ * Prompt removal form the user
+ */
+function confirmRemoval(value) {
+    return confirm(value);
+}
+
+/**
+ * If toCheckAll is true - checks all items, else un-checks all items
+ * @param toCheckAll
+ */
+function toggleAllChecked(toCheckAll) {
+    var i;
+    var items;
+    if (toCheckAll) {
+        items = document.querySelectorAll('li:not(.done) input[type="checkbox"]');
+    }
+    else {
+        items = document.querySelectorAll('li.done input[type="checkbox"]');
+    }
+    for (i = 0; i < items.length; i++) {
+        items[i].checked = Boolean(toCheckAll);
+        items[i].onclick();
+    }
+    updateCompleted();
+}
+
+/**
+ * Toggles the remove-all-completed img (button)
+ * @param completedCount
+ */
+function toggleRemoveAllCompleted(completedCount) {
+    if (completedCount !== 'no' && completedCount.indexOf('0 of ') === -1) {
+        removeAllCompletedButton.classList.remove('shrink');
+    }
+    else {
+        removeAllCompletedButton.classList.add('shrink');
+    }
+}
+
+function removeAllCompleted() {
+    if (confirmRemoval('Remove all completed items?')) {
+        var completedItems = document.querySelectorAll('li.done');
+        for (var i = 0; i < completedItems.length; i++) {
+            completedItems[i].remove();
+        }
+        updateCompleted();
+    }
+}
+
+/**
+ * Shows the given value inside the legend, if it has a value
+ * @param value
+ */
+function toggleLegend(value) {
+    legend.innerHTML = value ? value : '';
 }
 
 /**

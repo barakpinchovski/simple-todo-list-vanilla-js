@@ -8,6 +8,7 @@
         <meta name="author" content="Barak Pinchovski">
         <meta name="description" content="Simple todo list written in plain vanilla JS">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="icon" href="img/favicon.png">
     </head>
     <body>
         <div id="container">
@@ -17,15 +18,21 @@
             <main>
                 <form name="todoForm" onsubmit="return addItem()">
                     <div class="new-item">
-                        <input maxlength="57" placeholder="Enter item to add to the list" onkeyup="toggleTooltip(this.value)"/>
+                        <input maxlength="57" placeholder="Enter an item to add it to the list" onkeyup="toggleTooltip(this.value)"/>
                         <div onclick="addItem()" class="tooltip hide">Press Enter or click here to add the item</div>
                     </div>
-                    <article class="clearfix todos-list">
-                    </article>
+                    <ol class="clearfix todos-list">
+                    </ol>
                 </form>
             </main>
             <footer>
                 <div>Completed: <span class="completed-count">no</span> items</div>
+                <div>
+                    <img src="img/check-all.png" alt="Check all" onclick="toggleAllChecked(true)" onmouseenter="toggleLegend('Check all items')" onmouseleave="toggleLegend()"/>
+                    <img src="img/uncheck-all.png" alt="Uncheck all" onclick="toggleAllChecked()" onmouseenter="toggleLegend('Uncheck all items')" onmouseleave="toggleLegend()"/>
+                    <img class="shrink" src="img/remove-all-completed.png" alt="Remove Completed" onclick="removeAllCompleted()" onmouseenter="toggleLegend('Remove all completed items')" onmouseleave="toggleLegend()"/>
+                </div>
+                <div id="legend"></div>
             </footer>
         </div>
     </body>

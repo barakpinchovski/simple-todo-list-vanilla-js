@@ -1,5 +1,8 @@
+/*@import url('https://fonts.googleapis.com/css?family=Arimo|Dancing+Script|Pacifico|Indie+Flower|Source+Sans+Pro|Varela+Round|Rubik');*/
+@import url('https://fonts.googleapis.com/css?family=Arimo|Pacifico|Varela+Round');
+
 body {
-    font-family: Tahoma;
+    font-family: Arimo, Tahoma;
     min-width: 485px;
     min-height: 500px;
 }
@@ -17,8 +20,17 @@ body {
     display: table;
 }
 
+.hide {
+    visibility: hidden;
+}
+
+.shrink {
+    width: 0;
+    height: 0;
+}
+
 h1 {
-    font-family: Verdana, Geneva, "Trebuchet MS", Helvetica, sans-serif;
+    font-family: Arimo, Verdana, Geneva, "Trebuchet MS", Helvetica, sans-serif;
 }
 
 input {
@@ -30,6 +42,7 @@ input {
     border-radius: 10px;
     border: 1px solid lightgray;
     outline: 0;
+    font-family: 'Pacifico', 'Varela Round';
 }
 
 .new-item {
@@ -39,7 +52,10 @@ input {
 .tooltip.hide {
     height: 0;
     padding: 0;
-    visibility: hidden;
+}
+
+.tooltip:hover {
+    background: #2871a7;
 }
 
 .tooltip {
@@ -54,28 +70,66 @@ input {
     cursor: pointer;
 }
 
-article {
+ol {
     width: 72.5%;
     margin: 0 auto;
+    list-style-type: none;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
-section {
-    margin: 15px 0;
+li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    margin: 5px 0;
+    transition: all 0.1s ease-out;
 }
 
-section input[type='checkbox'],
-section label {
+li:hover {
+    background-color: rgba(11,85,138, 0.2);
+}
+
+li input[type='checkbox'],
+li label {
     float: left;
-    width: 5%;
     height: 20px;
     margin: 0;
     cursor: pointer;
+    /*font-family: 'Source Sans Pro', Arimo;*/
 }
 
-section label {
+li > div {
+    width: 5%;
+}
+
+li label {
     width: 95%;
+    height: 25px;
     text-align: left;
     color: #0b558a;
+}
+
+li:hover .remove-item {
+    visibility: visible;
+}
+
+.remove-item {
+    position: absolute;
+    visibility: hidden;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    margin-right: 5px;
+    filter: saturate(0.8) sepia(1) invert(0.5);
+    transition: all 0.2s ease-out;
+}
+
+.remove-item:hover {
+    filter: none;
 }
 
 .done {
@@ -87,6 +141,35 @@ section label {
     color: dimgray;
 }
 
-footer {
+.done .remove-item {
+    visibility: visible;
+}
+
+footer div {
     margin-top: 20px;
+}
+
+footer img {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.footer.shrink {
+    transition: all 0.5s linear;
+}
+
+.footer.shrink:hover {
+    transition: all 0.2s ease-out;
+}
+
+footer img:hover {
+    opacity: 1;
+}
+
+#legend {
+    font-size: 13px;
 }
