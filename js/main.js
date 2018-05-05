@@ -4,7 +4,10 @@ const completedCount = document.getElementsByClassName('completed-count')[0];
 const tooltip = document.getElementsByClassName('tooltip')[0];
 const todosList = document.getElementsByClassName('todos-list')[0];
 const legend = document.getElementById('legend');
-const removeAllCompletedButton = document.getElementsByClassName('shrink')[0];
+const bulkComplete = document.getElementById('bulk-complete');
+const bulkIncomplete = document.getElementById('bulk-incomplete');
+const removeAllCompletedButton = document.getElementById('bulk-remove-completed');
+const  shrinkClassName = 'shrink';
 var id = 0;
 
 /**
@@ -58,7 +61,9 @@ function createNewItem(value) {
 
     var label = document.createElement('label');
     label.setAttribute('for', id.toString());
-    label.appendChild( document.createTextNode(value) );
+    var span = document.createElement('span');
+    span.appendChild( document.createTextNode(value) );
+    label.appendChild(span);
 
     var removeItem = document.createElement('img');
     removeItem.classList.add('remove-item');
@@ -99,7 +104,7 @@ function updateCompleted() {
         count = 'no';
     }
     completedCount.innerHTML = count;
-    toggleRemoveAllCompleted(count);
+    toggleBulkButtons(checkboxes.length, count);
 }
 
 /**
@@ -130,15 +135,26 @@ function toggleAllChecked(toCheckAll) {
 }
 
 /**
- * Toggles the remove-all-completed img (button)
+ * Toggles the bulk operation images (buttons)
+ * @param completedCount
+ */
+function toggleBulkButtons(totalItems, completedCount) {
+    var action = totalItems ? 'remove' : 'add';
+    bulkComplete.classList[action](shrinkClassName);
+    bulkIncomplete.classList[action](shrinkClassName);
+    toggleRemoveAllCompleted(completedCount);
+}
+
+/**
+ * Toggles the remove-all-completed image (button)
  * @param completedCount
  */
 function toggleRemoveAllCompleted(completedCount) {
     if (completedCount !== 'no' && completedCount.indexOf('0 of ') === -1) {
-        removeAllCompletedButton.classList.remove('shrink');
+        removeAllCompletedButton.classList.remove(shrinkClassName);
     }
     else {
-        removeAllCompletedButton.classList.add('shrink');
+        removeAllCompletedButton.classList.add(shrinkClassName);
     }
 }
 

@@ -28,9 +28,9 @@
             <footer>
                 <div>Completed: <span class="completed-count">no</span> items</div>
                 <div>
-                    <img src="img/check-all.png" alt="Check all" onclick="toggleAllChecked(true)" onmouseenter="toggleLegend('Check all items')" onmouseleave="toggleLegend()"/>
-                    <img src="img/uncheck-all.png" alt="Uncheck all" onclick="toggleAllChecked()" onmouseenter="toggleLegend('Uncheck all items')" onmouseleave="toggleLegend()"/>
-                    <img class="shrink" src="img/remove-all-completed.png" alt="Remove Completed" onclick="removeAllCompleted()" onmouseenter="toggleLegend('Remove all completed items')" onmouseleave="toggleLegend()"/>
+                    <img id="bulk-complete" class="shrink" src="img/check-all.png" alt="Check all" onclick="toggleAllChecked(true)" onmouseenter="toggleLegend('Check all items')" onmouseleave="toggleLegend()"/>
+                    <img id="bulk-incomplete" class="shrink" src="img/uncheck-all.png" alt="Uncheck all" onclick="toggleAllChecked()" onmouseenter="toggleLegend('Uncheck all items')" onmouseleave="toggleLegend()"/>
+                    <img id="bulk-remove-completed" class="shrink" src="img/remove-all-completed.png" alt="Remove Completed" onclick="removeAllCompleted()" onmouseenter="toggleLegend('Remove all completed items')" onmouseleave="toggleLegend()"/>
                 </div>
                 <div id="legend"></div>
             </footer>
