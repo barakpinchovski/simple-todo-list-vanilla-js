@@ -11,8 +11,9 @@ Author: Barak Pinchovski
 You can visit the [WIKI](https://github.com/barakpinchovski/simple-todo-list-vanilla-js/wiki) if you'd like to see images of the app.
 
 ## Notice
-I initially didn't intend to prevent any XSS or any JS injections in this implementation.  
+1. I initially didn't intend to prevent any XSS or any JS injections in this implementation.  
 Be aware of that if you plan to use this code on staging/production (not recommended without implementing counter-XSS measures).
+2. Optimized for Chrome (not aimed for other browsers).
 
 ## Features
 * Adding new list items
