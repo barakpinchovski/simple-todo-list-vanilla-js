@@ -74,6 +74,7 @@ function createNewItem(value) {
     removeItem.onclick = function() {
         if (checkbox.checked || !checkbox.checked && confirmRemoval('Remove incomplete item?')) {
             newTodo.remove();
+            toggleLegend();
             updateCompleted();
         }
     };
