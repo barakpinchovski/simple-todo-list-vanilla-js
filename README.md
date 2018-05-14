@@ -22,6 +22,7 @@ Be aware of that if you plan to use this code on staging/production (not recomme
 * Checking all list items at once
 * Un-checking all list items at once
 * Removing all completed list items at once
+* Accessibility support (keyboard navigation and actions. aria implementation might be performed later)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details

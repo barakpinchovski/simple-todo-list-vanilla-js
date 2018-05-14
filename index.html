@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Barak Pinchovski">
         <meta name="description" content="Simple todo list written in plain vanilla JS">
+        <meta name="keywords" content="todo, javascript, js, vanilla, plain, app, accessibility, accessible, example">
         <link rel="stylesheet" href="css/main.css">
         <link rel="icon" href="img/favicon.png">
     </head>
@@ -19,7 +20,7 @@
                 <form name="todoForm" onsubmit="return addItem()">
                     <div class="new-item">
                         <input maxlength="57" placeholder="Enter an item to add it to the list" onkeyup="toggleTooltip(this.value)"/>
-                        <div onclick="addItem()" class="tooltip hide">Press Enter or click here to add the item</div>
+                        <div onclick="addItem()" onkeyup="simulateMouseClick(this, event)"  class="tooltip a11y-focus hide" tabindex="0">Press Enter or click here to add the item</div>
                     </div>
                     <ol class="clearfix todos-list">
                     </ol>
@@ -28,9 +29,9 @@
             <footer>
                 <div>Completed: <span class="completed-count">no</span> items</div>
                 <div>
-                    <img id="bulk-complete" class="shrink" src="img/check-all.png" alt="Check all" onclick="toggleAllChecked(true)" onmouseenter="toggleLegend('Check all items')" onmouseleave="toggleLegend()"/>
-                    <img id="bulk-incomplete" class="shrink" src="img/uncheck-all.png" alt="Uncheck all" onclick="toggleAllChecked()" onmouseenter="toggleLegend('Uncheck all items')" onmouseleave="toggleLegend()"/>
-                    <img id="bulk-remove-completed" class="shrink" src="img/remove-all-completed.png" alt="Remove Completed" onclick="removeAllCompleted()" onmouseenter="toggleLegend('Remove all completed items')" onmouseleave="toggleLegend()"/>
+                    <img id="bulk-complete" tabindex="0" class="shrink a11y-focus" src="img/check-all.png" alt="Check all items" onclick="toggleAllChecked(true)" onkeyup="simulateMouseClick(this, event)" onmouseenter="toggleLegend('Check all items')" onfocus="toggleLegend('Check all items')" onmouseleave="toggleLegend()" onblur="toggleLegend()"/>
+                    <img id="bulk-incomplete" tabindex="0" class="shrink a11y-focus" src="img/uncheck-all.png" alt="Uncheck all items" onclick="toggleAllChecked()" onkeyup="simulateMouseClick(this, event)" onmouseenter="toggleLegend('Uncheck all items')" onfocus="toggleLegend('Uncheck all items')" onmouseleave="toggleLegend()" onblur="toggleLegend()"/>
+                    <img id="bulk-remove-completed" tabindex="0" class="shrink a11y-focus" src="img/remove-all-completed.png" alt="Remove completed items" onclick="removeAllCompleted()" onkeyup="simulateMouseClick(this, event)" onmouseenter="toggleLegend('Remove all completed items')" onfocus="toggleLegend('Remove all completed items')" onmouseleave="toggleLegend()" onblur="toggleLegend()"/>
                 </div>
                 <div id="legend"></div>
             </footer>

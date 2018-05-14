@@ -7,7 +7,7 @@ const legend = document.getElementById('legend');
 const bulkComplete = document.getElementById('bulk-complete');
 const bulkIncomplete = document.getElementById('bulk-incomplete');
 const removeAllCompletedButton = document.getElementById('bulk-remove-completed');
-const  shrinkClassName = 'shrink';
+const shrinkClassName = 'shrink';
 var id = 0;
 
 /**
@@ -49,8 +49,9 @@ function createNewItem(value) {
     var newTodo = document.createElement('li');
 
     var checkbox = document.createElement('input');
-    checkbox.id = id;
+    checkbox.id = id.toString();
     checkbox.setAttribute('type', 'checkbox');
+    checkbox.classList.add('a11y-focus'); // Intended for accessibility
     checkbox.onclick = function() {
         newTodo.classList.toggle('done');
         updateCompleted();
@@ -69,8 +70,11 @@ function createNewItem(value) {
     removeItem.classList.add('remove-item');
     removeItem.setAttribute('src', 'img/remove-item.svg');
     removeItem.setAttribute('alt', 'Remove item');
+    removeItem.setAttribute('tabindex', 0); // Intended for accessibility
+    removeItem.classList.add('a11y-focus'); // Intended for accessibility
     removeItem.onmouseenter = function() { toggleLegend('Remove this single item'); };
     removeItem.onmouseleave = function() { toggleLegend(); };
+    removeItem.onkeypress = function(event) { simulateMouseClick(this, event); };  // Intended for accessibility
     removeItem.onclick = function() {
         if (checkbox.checked || !checkbox.checked && confirmRemoval('Remove incomplete item?')) {
             newTodo.remove();
@@ -183,4 +187,15 @@ function toggleLegend(value) {
 function clearInput() {
     newTodoInput.value = null;
     toggleTooltip(newTodoInput.value);
+}
+
+/**
+ * Simulates mouse click for the keyboard's Enter action (intended for accessibility)
+ * @param element - The element that triggered the simulateMouseClick call
+ * @param event - Triggered event
+ */
+function simulateMouseClick(element, event) {
+    if (event.keyCode === 13 || event.which === 13 || event.key === 'Enter') {  // cross browser validation
+        element.onclick();
+    }
 }

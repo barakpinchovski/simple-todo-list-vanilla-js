@@ -27,13 +27,14 @@ body {
 .shrink {
     width: 0;
     height: 0;
+    visibility: hidden;
 }
 
 h1 {
     font-family: Arimo, Verdana, Geneva, "Trebuchet MS", Helvetica, sans-serif;
 }
 
-input {
+main input {
     width: 70%;
     height: 50px;
     padding: 0 15px;
@@ -123,6 +124,10 @@ li:focus .remove-item {
     visibility: visible;
 }
 
+img {
+    border-radius: 100%;
+}
+
 .remove-item {
     position: absolute;
     visibility: hidden;
@@ -186,5 +191,20 @@ footer img:focus {
 
 .a11y-focus:focus {
     box-shadow: 0 0 36px #84bacb;
-    outline: 1px solid lightblue;
+    outline: none;
+}
+
+.a11y-control {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px 0 0 10px;
+}
+.a11y-control label,
+.a11y-control input {
+    cursor: pointer;
+}
+
+.a11y-control input {
+    margin-left: 10px;
 }
