@@ -1,6 +1,7 @@
 // Initialize commonly used variables
 const newTodoInput = document.todoForm[0];
 const completedCount = document.getElementsByClassName('completed-count')[0];
+const pendingCount = document.getElementsByClassName('pending-count')[0];
 const tooltip = document.getElementsByClassName('tooltip')[0];
 const todosList = document.getElementsByClassName('todos-list')[0];
 const legend = document.getElementById('legend');
@@ -97,19 +98,24 @@ function createNewItem(value) {
 function updateCompleted() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     var count = 0;
-    if (checkboxes.length) {
-        for (var i = 0; i < checkboxes.length; i++) {
+    var total = checkboxes.length;
+    var pending = 0;
+    if (total) {
+        for (var i = 0; i < total; i++) {
             if (checkboxes[i].checked) {
                 count++;
             }
         }
-        count = count + ' of ' + checkboxes.length;
+        pending = total - count;
+        count = count + ' of ' + total;
     }
     else {
         count = 'no';
     }
+
     completedCount.innerHTML = count;
-    toggleBulkButtons(checkboxes.length, count);
+    pendingCount.innerHTML = pending;
+    toggleBulkButtons(total, count);
 }
 
 /**
